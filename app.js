@@ -1,34 +1,41 @@
 let players = [];
 
-document.getElementById("createPlayerBtn").addEventListener("click", createPlayer);
 document.getElementById("startAssignmentBtn").addEventListener("click", startAssignment);
 document.getElementById("clearPlayersBtn").addEventListener("click", clearPlayers);
 
+document.getElementById("addPlayerBtn").addEventListener("click", addPlayer);
 
-function createPlayer() {
-    let playerName = prompt("Ange spelarens namn:");
-    players.push({ Name: playerName, Bag: null });
-    updatePlayersList();
-}
+function addPlayer() {
+    let playerNameInput = document.getElementById("playerNameInput");
+    let playerName = playerNameInput.value;
+    if (playerName) {
+      players.push({ Name: playerName, Bag: null });
+      updatePlayersList();
+      playerNameInput.value = "";
+    }
+  }
+  
 
 function startAssignment() {
     let availableBags = players.map(player => `${player.Name}s väska`);
-
+    let assignedBags = [];
+  
     for (let i = 0; i < players.length; i++) {
-        let randomIndex = Math.floor(Math.random() * availableBags.length);
-        let assignedBagName = availableBags[randomIndex];
-
-        while (assignedBagName.includes(players[i].Name)) {
-            randomIndex = Math.floor(Math.random() * availableBags.length);
-            assignedBagName = availableBags[randomIndex];
-        }
-
-        players[i].Bag = assignedBagName;
-        availableBags.splice(randomIndex, 1);
+      let randomIndex = Math.floor(Math.random() * availableBags.length);
+      let assignedBagName = availableBags[randomIndex];
+  
+      while (assignedBags.includes(assignedBagName)) {
+        randomIndex = Math.floor(Math.random() * availableBags.length);
+        assignedBagName = availableBags[randomIndex];
+      }
+  
+      players[i].Bag = assignedBagName;
+      assignedBags.push(assignedBagName);
     }
-
+  
     displayResults();
-}
+  }
+  
 
 function clearPlayers() {
     players = [];
