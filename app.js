@@ -1,5 +1,10 @@
 let players = [];
 
+document.getElementById("createPlayerBtn").addEventListener("click", createPlayer);
+document.getElementById("startAssignmentBtn").addEventListener("click", startAssignment);
+document.getElementById("clearPlayersBtn").addEventListener("click", clearPlayers);
+
+
 function createPlayer() {
     let playerName = prompt("Ange spelarens namn:");
     players.push({ Name: playerName, Bag: null });

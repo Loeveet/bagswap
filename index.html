@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BagSwap SPA</title>
-    <link rel="icon" href="favicon_io/favicon-32x32.png" type="image/png">
-</head>
-<body>
-    <div id="app">
-        <h1>BagSwapTest</h1>
-        <div id="playersList"></div>
-        <button onclick="createPlayer()">Skapa spelare</button>
-        <button onclick="startAssignment()">Påbörja tilldelning</button>
-        <button onclick="clearPlayers()">Rensa spelare</button>
-        <div id="results"></div>
+    <link rel="icon" href="favicon_io/favicon-32x32.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app" class="container mt-4">
+      <h1 class="text-center mb-4">BagSwap Test</h1>
+      <div class="text-center">
+        <div id="playersList" class="mb-4"></div>
+        <button id="createPlayerBtn" class="btn btn-primary">
+          Skapa spelare
+        </button>
+        <button id="startAssignmentBtn" class="btn btn-primary ms-2">
+          Påbörja tilldelning
+        </button>
+        <button id="clearPlayersBtn" class="btn btn-danger ms-2">
+          Rensa spelare
+        </button>
+        <div id="results" class="mt-4"></div>
+      </div>
     </div>
 
     <script src="app.js"></script>
-</body>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
