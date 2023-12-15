@@ -15,26 +15,45 @@ function addPlayer() {
     }
   }
   
+  function startAssignment() {
+    document.getElementById("startAssignmentBtn").disabled = true;
 
-function startAssignment() {
     let availableBags = players.map(player => `${player.Name}s väska`);
     let assignedBags = [];
-  
-    for (let i = 0; i < players.length; i++) {
-      let randomIndex = Math.floor(Math.random() * availableBags.length);
-      let assignedBagName = availableBags[randomIndex];
-  
-      while (assignedBags.includes(assignedBagName)) {
-        randomIndex = Math.floor(Math.random() * availableBags.length);
-        assignedBagName = availableBags[randomIndex];
-      }
-  
-      players[i].Bag = assignedBagName;
-      assignedBags.push(assignedBagName);
+
+    function assignBagsRecursively() {
+        for (let i = 0; i < players.length; i++) {
+            let randomIndex = Math.floor(Math.random() * availableBags.length);
+            let assignedBagName = availableBags[randomIndex];
+
+            while (assignedBagName.includes(players[i].Name) || assignedBags.includes(assignedBagName)) {
+                randomIndex = Math.floor(Math.random() * availableBags.length);
+                assignedBagName = availableBags[randomIndex];
+            }
+
+            players[i].Bag = assignedBagName;
+            assignedBags.push(assignedBagName);
+        }
+
+        const hasPlayerReceivedOwnBag = players.some(player => player.Bag.includes(player.Name));
+
+        if (hasPlayerReceivedOwnBag) {
+            assignedBags = [];
+            assignBagsRecursively();
+        } else {
+            document.getElementById("startAssignmentBtn").disabled = false;
+        }
     }
-  
+
+    assignBagsRecursively();
+
     displayResults();
-  }
+}
+
+
+
+
+  
   
 
 function clearPlayers() {
